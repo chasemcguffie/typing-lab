@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;	
+  }
+  
+  #prompt-container {
+    font-family: Courier New, Courier, monospace;
+    font-size: 24px;
+    letter-spacing: 3px;
+  }
+    
+  .keyboard-container {
+    margin-top: 200px;
+  }
+  
+  .keys-row {
+    margin-top: 40px;
+    padding: 10px 0;
+  }
+  
