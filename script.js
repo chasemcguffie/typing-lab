@@ -31,12 +31,20 @@ $(document).keydown(function( event ) {
             console.log(shifted);
         }
     });
+    let splitSentence = sentences[sentenceCounter].split('');
+
+    var displaySentence = splitSentence.map((character, index) => {
+        return `<span id="target-${index}">${character}</span>`;
+    }).join('');
+    if (characterCounter == displaySentence.length) {
+        $('#sentence').empty();
+        sentenceCounter = sentenceCounter + 1;
+        displaySentence = sentences[sentenceCounter];
+    }
+    $('#sentence').append(displaySentence);
     $(document).keypress(function(event) {
         //console.log(document.getElementById('target-' + characterCounter));
         $("#" + (event.keyCode)).css('background-color', 'yellow');
-        if (characterCounter >= sentences[sentenceCounter].length) {
-            $('#sentence').empty();
-        }
         if (String.fromCharCode(event.keyCode) === document.getElementById('target-' + characterCounter).innerHTML) {
             characterCounter = characterCounter + 1;
             $('#target-' + characterCounter).css('background-color', 'yellow')
@@ -47,11 +55,4 @@ $(document).keydown(function( event ) {
         $("#" + (event.keyCode)).css('background-color', '')
         $("#" + (event.keyCode + 32)).css('background-color', '')
     });
-    let splitSentence = sentences[sentenceCounter].split('');
-
-var displaySentence = splitSentence.map((character, index) => {
-    return `<span id="target-${index}">${character}</span>`;
-}).join('');
-
-$('#sentence').append(displaySentence);
 });
