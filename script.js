@@ -8,8 +8,7 @@ let characterCounter = 0;
 let splitSentence = sentences[sentenceCounter].split('');
 numberOfWords = sentences[0].length + sentences[1].length + sentences[2].length + sentences[3].length + sentences[4].length;
 numberOfMistakes = 0;
-const wordsPerMinute = numberOfWords / minutes - 2 * numberOfMistakes
-
+var start = new Date();
 
 var displaySentence = splitSentence.map((character, index) => {
     return `<span id="target-${index}">${character}</span>`;
@@ -81,4 +80,10 @@ $(document).keydown(function( event ) {
         $("#" + (event.keyCode)).css('background-color', '')
         $("#" + (event.keyCode + 32)).css('background-color', '')
     });
+    if (sentenceCounter == sentences.length) {
+        var elapsed = new Date() - start;
+        const minutes = elapsed / 1000;
+        const wordsPerMinute = numberOfWords / minutes - 2 * numberOfMistakes;
+        console.log(wordsPerMinute)
+    }
 });
